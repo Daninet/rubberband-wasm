@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Fix permissions
-        run: sudo chmod -R 666 dist
+        run: sudo chown -R $(id -u):$(id -g) dist
 
       - name: Build JS library
         run: npm run build-rollup
