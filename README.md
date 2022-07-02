@@ -4,7 +4,7 @@ WebAssembly build of the audio time-stretching and pitch-shifting [Rubber Band L
 
 # Usage
 
-See demo app.
+See [demo app](https://daninet.github.io/rubberband-wasm/).
 
 # License
 

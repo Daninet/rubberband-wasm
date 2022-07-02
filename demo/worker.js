@@ -1,10 +1,10 @@
-importScripts("../dist/index.umd.js", "./wav.js");
+importScripts("./rubberband.umd.min.js", "./wav.js");
 
 let rbApi = null;
 
 (async () => {
   console.time("wasm compile");
-  const wasm = await WebAssembly.compileStreaming(fetch("/dist/rubberband.wasm"));
+  const wasm = await WebAssembly.compileStreaming(fetch("./rubberband.wasm"));
   rbApi = await rubberband.RubberBandInterface.initialize(wasm);
   console.timeEnd("wasm compile");
   postMessage({ ready: true });

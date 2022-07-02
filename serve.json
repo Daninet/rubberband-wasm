@@ -1,3 +1,8 @@
 {
-  "redirects": [{ "source": "/", "destination": "/demo" }]
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/", "destination": "/demo" },
+    { "source": "/demo/rubberband.umd.min.js", "destination": "/dist/index.umd.min.js" },
+    { "source": "/demo/rubberband.wasm", "destination": "/dist/rubberband.wasm" }
+  ]
 }

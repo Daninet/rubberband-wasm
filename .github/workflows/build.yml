@@ -45,6 +45,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Copy required files to demo
+        run: cp dist/index.umd.min.js demo/rubberband.umd.min.js && cp dist/rubberband.wasm demo/rubberband.wasm
+
       - name: Deploy demo to 'gh-pages' branch
         if: success()
         uses: crazy-max/ghaction-github-pages@v3
