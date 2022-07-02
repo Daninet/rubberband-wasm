@@ -127,7 +127,7 @@ function makeWorkerMessage({ askWav } = {}) {
     channelBuffers,
     sampleRate: inputAudioBuffer.sampleRate,
     pitch: pitchSemitones,
-    tempo,
+    tempo: 1 / tempo,
     ...(askWav ? { wav: true } : {}),
   };
 }
@@ -152,7 +152,6 @@ async function processAndExport() {
   const start = performance.now();
   const msg = makeWorkerMessage({ askWav: true });
   const wavBuffer = await processOnWorker(msg);
-  console.log(wavBuffer);
   const timeMs = performance.now() - start;
 
   const filename = "audio.wav";

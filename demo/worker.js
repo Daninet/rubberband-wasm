@@ -70,8 +70,6 @@ onmessage = async function (e) {
       if (available < 1) break;
       if (!final && available < samplesRequired) break;
       const recv = rbApi.rubberband_retrieve(rbState, channelArrayPtr, Math.min(samplesRequired, available));
-      // console.log("recv", recv);
-      // console.log(channelDataPtr[0], rbApi.memReadF32(channelDataPtr[0], recv));
       channelDataPtr.forEach((ptr, i) => outputBuffers[i].set(rbApi.memReadF32(ptr, recv), write));
       write += recv;
     }
