@@ -22,7 +22,7 @@ jobs:
           node-version: "16.x"
 
       - name: Build bindings
-        run: docker run -it --rm -v ${PWD}:/app -w /app emscripten/emsdk:3.1.14 /bin/bash ./build.sh
+        run: docker run --rm -v ${PWD}:/app -w /app emscripten/emsdk:3.1.14 /bin/bash ./build.sh
 
       - name: Install JS dependencies
         run: npm ci
