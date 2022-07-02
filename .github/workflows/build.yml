@@ -1,0 +1,58 @@
+name: Build
+
+on:
+  push:
+    # branches:
+    #   - "!*"
+    # tags:
+    #   - "v*"
+
+jobs:
+  build-wasm:
+    name: Build the source code into WASM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+
+      - name: Build bindings
+        run: docker run -it --rm -v ${PWD}:/app -w /app emscripten/emsdk:3.1.14 /bin/sh ./build.sh
+
+      - name: Install JS dependencies
+        run: npm ci
+
+      - name: Build JS library
+        run: npm run build-rollup
+
+      - name: Build TypeScript types
+        run: npm run build-types
+
+      - name: Deploy to 'binaries' branch
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: binaries
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Deploy demo to 'gh-pages' branch
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: demo
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+
+      # - run: npm publish
+      #   env:
+      #     CI: true
