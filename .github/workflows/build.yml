@@ -27,6 +27,9 @@ jobs:
       - name: Install JS dependencies
         run: npm ci
 
+      - name: Fix permissions
+        run: chmod -R 666 dist
+
       - name: Build JS library
         run: npm run build-rollup
 
