@@ -178,12 +178,28 @@ export class RubberBandInterface {
     this.wasm.exports.rb_set_pitch_scale(state, scale);
   }
 
+  rubberband_set_formant_scale(state: RubberBandState, scale: number) {
+    this.wasm.exports.rb_set_formant_scale(state, scale);
+  }
+
   rubberband_get_time_ratio(state: RubberBandState): number {
     return this.wasm.exports.rb_get_time_ratio(state);
   }
 
   rubberband_get_pitch_scale(state: RubberBandState): number {
     return this.wasm.exports.rb_get_pitch_scale(state);
+  }
+
+  rubberband_get_formant_scale(state: RubberBandState): number {
+    return this.wasm.exports.rb_get_formant_scale(state);
+  }
+
+  rubberband_get_preferred_start_pad(state: RubberBandState): number {
+    return this.wasm.exports.rb_get_preferred_start_pad(state);
+  }
+
+  rubberband_get_start_delay(state: RubberBandState): number {
+    return this.wasm.exports.rb_get_start_delay(state);
   }
 
   rubberband_get_latency(state: RubberBandState): number {
@@ -220,6 +236,10 @@ export class RubberBandInterface {
 
   rubberband_set_max_process_size(state: RubberBandState, samples: number) {
     this.wasm.exports.rb_set_max_process_size(state, samples);
+  }
+
+  rubberband_get_process_size_limit(state: RubberBandState): number {
+    return this.wasm.exports.rb_get_process_size_limit(state);
   }
 
   rubberband_set_key_frame_map(state: RubberBandState, keyframecount: number, from: number, to: number) {
