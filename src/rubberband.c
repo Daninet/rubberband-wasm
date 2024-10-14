@@ -24,10 +24,14 @@ EMSCRIPTEN_KEEPALIVE void rb_reset(RubberBandState state) { rubberband_reset(sta
 
 EMSCRIPTEN_KEEPALIVE void rb_set_time_ratio(RubberBandState state, double ratio) { rubberband_set_time_ratio(state, ratio); }
 EMSCRIPTEN_KEEPALIVE void rb_set_pitch_scale(RubberBandState state, double scale) { rubberband_set_pitch_scale(state, scale); }
+EMSCRIPTEN_KEEPALIVE void rb_set_formant_scale(RubberBandState state, double scale) { rubberband_set_formant_scale(state, scale); }
 
 EMSCRIPTEN_KEEPALIVE double rb_get_time_ratio(const RubberBandState state) { return rubberband_get_time_ratio(state); }
 EMSCRIPTEN_KEEPALIVE double rb_get_pitch_scale(const RubberBandState state) { return rubberband_get_pitch_scale(state); }
+EMSCRIPTEN_KEEPALIVE double rb_get_formant_scale(const RubberBandState state) { return rubberband_get_formant_scale(state); }
 
+EMSCRIPTEN_KEEPALIVE unsigned int rb_get_preferred_start_pad(const RubberBandState state) { return rubberband_get_preferred_start_pad(state); }
+EMSCRIPTEN_KEEPALIVE unsigned int rb_get_start_delay(const RubberBandState state) { return rubberband_get_start_delay(state); }
 EMSCRIPTEN_KEEPALIVE unsigned int rb_get_latency(const RubberBandState state) { return rubberband_get_latency(state); }
 
 EMSCRIPTEN_KEEPALIVE void rb_set_transients_option(RubberBandState state, RubberBandOptions options) { rubberband_set_transients_option(state, options); }
@@ -41,6 +45,7 @@ EMSCRIPTEN_KEEPALIVE void rb_set_expected_input_duration(RubberBandState state, 
 EMSCRIPTEN_KEEPALIVE unsigned int rb_get_samples_required(const RubberBandState state) { return rubberband_get_samples_required(state); }
 
 EMSCRIPTEN_KEEPALIVE void rb_set_max_process_size(RubberBandState state, unsigned int samples) { rubberband_set_max_process_size(state, samples); }
+EMSCRIPTEN_KEEPALIVE unsigned int rb_get_process_size_limit(const RubberBandState state) { return rubberband_get_process_size_limit(state); }
 EMSCRIPTEN_KEEPALIVE void rb_set_key_frame_map(RubberBandState state, unsigned int keyframecount, unsigned int *from, unsigned int *to) { rubberband_set_key_frame_map(state, keyframecount, from, to); }
 
 EMSCRIPTEN_KEEPALIVE void rb_study(RubberBandState state, const float *const *input, unsigned int samples, int final) { rubberband_study(state, input, samples, final); }

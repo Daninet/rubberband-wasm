@@ -1,15 +1,18 @@
 #!/bin/bash
 set -e
+set -f
 
 # set working directory to script location
 cd "${0%/*}"
 
-if [ ! -f lib/rubberband-2.0.2.tar.bz2 ]; then
+rubberband_version="3.3.0"
+
+if [ ! -f lib/rubberband-${rubberband_version}.tar.bz2 ]; then
   [ -e lib ] && rm -r lib
   mkdir -p lib
-  wget https://breakfastquay.com/files/releases/rubberband-2.0.2.tar.bz2 -P lib
-  tar xmf lib/rubberband-2.0.2.tar.bz2 -C lib
-  mv -v lib/rubberband-2.0.2 lib/rubberband
+  wget "https://breakfastquay.com/files/releases/rubberband-${rubberband_version}.tar.bz2" -P lib
+  tar xmf "lib/rubberband-${rubberband_version}.tar.bz2" -C lib
+  mv -v "lib/rubberband-${rubberband_version}" lib/rubberband
 fi
 
 # -fno-exceptions

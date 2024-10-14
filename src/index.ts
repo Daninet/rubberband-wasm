@@ -36,6 +36,9 @@ export enum RubberBandOption {
 
   RubberBandOptionChannelsApart = 0x00000000,
   RubberBandOptionChannelsTogether = 0x10000000,
+
+  RubberBandOptionEngineFaster = 0x00000000,
+  RubberBandOptionEngineFiner = 0x20000000
 }
 
 export enum RubberBandPresetOption {
@@ -48,7 +51,7 @@ export type RubberBandState = number;
 export class RubberBandInterface {
   private wasm: { heap: { HEAP8: Uint8Array; HEAP32: Uint32Array }; exports: any };
 
-  private constructor() {}
+  private constructor() { }
 
   static async initialize(module: WebAssembly.Module) {
     if (typeof WebAssembly === "undefined") {
